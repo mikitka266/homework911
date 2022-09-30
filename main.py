@@ -1,19 +1,19 @@
 from telegram import Bot, Update
-from telegram.ext import Updater, CommandHandler
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
 bot = Bot(token='')
 updater = Updater(token='')
 dispatcher = updater.dispatcher
 
 
-def start(update, context):
-    context.bot.send_message(update.effective_chat.id, 'Привет\nКак твои дела?')
+def voice(update, context):
+    context.bot.send_message(update.effective_chat.id, 'Надоели Ваши голосовые сообщения! Не умею я их читать!')
 
 
-start_handler = CommandHandler('start', start)
+voice_handler = MessageHandler(Filters.voice, voice)
 
 
-dispatcher.add_handler(start_handler)
+dispatcher.add_handler(voice_handler)
 
 updater.start_polling()
 updater.idle()  # ctrl + c
