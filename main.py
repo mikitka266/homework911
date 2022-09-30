@@ -6,14 +6,15 @@ updater = Updater(token='')
 dispatcher = updater.dispatcher
 
 
-def voice(update, context):
-    context.bot.send_message(update.effective_chat.id, 'Надоели Ваши голосовые сообщения! Не умею я их читать!')
+def message(update, context):
+    text = update.message.text
+    context.bot.send_message(update.effective_chat.id, f'{text * 10}\n Я повторюшка :)')
 
 
-voice_handler = MessageHandler(Filters.voice, voice)
+message_handler = MessageHandler(Filters.text, message)
 
 
-dispatcher.add_handler(voice_handler)
+dispatcher.add_handler(message_handler)
 
 updater.start_polling()
 updater.idle()  # ctrl + c
