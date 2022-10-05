@@ -8,7 +8,8 @@ dispatcher = updater.dispatcher
 
 def message(update, context):
     text = update.message.text
-    context.bot.send_message(update.effective_chat.id, f'{text * 10}\t Я повторюшка :)')
+    text1= text.replace('абв', "")
+    context.bot.send_message(update.effective_chat.id, f'{text1}\t Я не знаю букв сочетания букв абв :)')
 
 
 message_handler = MessageHandler(Filters.text, message)
